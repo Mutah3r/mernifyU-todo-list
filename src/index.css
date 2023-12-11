@@ -1,3 +1,12 @@
+/* Google Font */
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
+/* Tailwind Config */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Global Styles */
+* {
+  font-family: "Poppins", sans-serif;
+}
