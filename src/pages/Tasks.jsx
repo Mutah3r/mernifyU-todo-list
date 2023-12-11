@@ -37,7 +37,7 @@ const Tasks = () => {
         >
           <div className="mt-2 flex flex-col gap-3">
             <TaskCard
-              taskID="123"
+              dueDate="12/12/2023"
               title="This is the title of this card"
               description="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Temporibus quasi officiis, quidem inventore odit ut impedit alias sint quaerat repellat."
             />
@@ -48,7 +48,7 @@ const Tasks = () => {
         <TaskList title="In progress" icon={<GrInProgress />} type="progress">
           <div className="mt-2 flex flex-col gap-3">
             <TaskCard
-              taskID="123"
+              dueDate="12/12/2023"
               title="This is the title of this card"
               description="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Temporibus quasi officiis, quidem inventore odit ut impedit alias sint quaerat repellat."
             />
