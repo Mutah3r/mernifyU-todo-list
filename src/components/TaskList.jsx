@@ -1,3 +1,5 @@
+import React from "react";
+
 const TaskList = ({ title, icon, type, children }) => {
   return (
     <div
@@ -24,8 +26,8 @@ const TaskList = ({ title, icon, type, children }) => {
       >
         {icon} <span>{title}</span>
       </h3>
-      {children ? (
-        children
+      {React.Children.count(children) !== 0 ? (
+        <div className="mt-2 flex flex-col gap-3">{children}</div>
       ) : (
         <div className="flex items-center justify-center h-[200px] p-4">
           <p className="text-gray-600">

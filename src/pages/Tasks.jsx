@@ -7,8 +7,25 @@ import { MdOutlineCheckBoxOutlineBlank } from "react-icons/md";
 import { GrInProgress } from "react-icons/gr";
 import { IoMdCheckboxOutline } from "react-icons/io";
 import TaskCard from "../components/TaskCard";
+import { useEffect, useState } from "react";
+import { axiosOpen } from "../utils/axios";
+import Loader from "../components/Loader";
 
 const Tasks = () => {
+  const [allTasks, setAllTasks] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  const getTasksByStatus = (status) => {
+    return allTasks.filter((task) => task.status === status);
+  };
+
+  useEffect(() => {
+    axiosOpen.get("/api/v1/tasks").then((res) => {
+      setAllTasks(res.data.tasks);
+      setLoading(false);
+    });
+  }, []);
+
   return (
     <div>
       {/* Search box */}
@@ -35,32 +52,60 @@ const Tasks = () => {
           icon={<MdOutlineCheckBoxOutlineBlank />}
           type="pending"
         >
-          <div className="mt-2 flex flex-col gap-3">
-            <TaskCard
-              dueDate="12/12/2023"
-              title="This is the title of this card"
-              description="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Temporibus quasi officiis, quidem inventore odit ut impedit alias sint quaerat repellat."
-            />
-          </div>
+          {loading ? (
+            <div className="h-[100px] flex justify-center items-center">
+              <Loader />
+            </div>
+          ) : (
+            getTasksByStatus("Pending").map((t) => (
+              <TaskCard
+                taskID={t._id}
+                key={t._id}
+                dueDate={t.dueDate}
+                title={t.title}
+                description={t.description}
+              />
+            ))
+          )}
         </TaskList>
 
         {/* In progress tasks container */}
         <TaskList title="In progress" icon={<GrInProgress />} type="progress">
-          <div className="mt-2 flex flex-col gap-3">
-            <TaskCard
-              dueDate="12/12/2023"
-              title="This is the title of this card"
-              description="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Temporibus quasi officiis, quidem inventore odit ut impedit alias sint quaerat repellat."
-            />
-          </div>
+          {loading ? (
+            <div className="h-[100px] flex justify-center items-center">
+              <Loader />
+            </div>
+          ) : (
+            getTasksByStatus("In Progress").map((t) => (
+              <TaskCard
+                taskID={t._id}
+                key={t._id}
+                dueDate={t.dueDate}
+                title={t.title}
+                description={t.description}
+              />
+            ))
+          )}
         </TaskList>
 
         {/* Completed tasks container */}
-        <TaskList
-          title="Done"
-          icon={<IoMdCheckboxOutline />}
-          type="completed"
-        ></TaskList>
+        <TaskList title="Done" icon={<IoMdCheckboxOutline />} type="completed">
+          {loading ? (
+            <div className="h-[100px] flex justify-center items-center">
+              <Loader />
+            </div>
+          ) : (
+            getTasksByStatus("Completed").map((t) => (
+              <TaskCard
+                taskID={t._id}
+                key={t._id}
+                dueDate={t.dueDate}
+                title={t.title}
+                description={t.description}
+              />
+            ))
+          )}
+        </TaskList>
       </div>
     </div>
   );
