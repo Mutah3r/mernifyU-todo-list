@@ -35,6 +35,11 @@ const Tasks = () => {
     setIsOpen(true);
   };
 
+  const discardTask = (id) => {
+    const updatedTasks = allTasks.filter((task) => task._id !== id);
+    setAllTasks(updatedTasks);
+  };
+
   const addTaskToDB = () => {
     if (!newTaskTitle || !newTaskDescription || !newTaskDueDate) {
       toast.warn("Please fill-up all the fields!", {
@@ -150,6 +155,7 @@ const Tasks = () => {
           ) : (
             getTasksByStatus("Pending").map((t) => (
               <TaskCard
+                discardTask={discardTask}
                 taskID={t._id}
                 key={t._id}
                 dueDate={t.dueDate}
@@ -169,6 +175,7 @@ const Tasks = () => {
           ) : (
             getTasksByStatus("In Progress").map((t) => (
               <TaskCard
+                discardTask={discardTask}
                 taskID={t._id}
                 key={t._id}
                 dueDate={t.dueDate}
@@ -188,6 +195,7 @@ const Tasks = () => {
           ) : (
             getTasksByStatus("Completed").map((t) => (
               <TaskCard
+                discardTask={discardTask}
                 taskID={t._id}
                 key={t._id}
                 dueDate={t.dueDate}
