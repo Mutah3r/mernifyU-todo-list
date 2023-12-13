@@ -28,7 +28,7 @@ const TaskCard = ({ title, description, dueDate }) => {
         </span>
       </div>
       <p className="text-neutral-600 text-[15px] mt-3">{description}</p>
-      <h3 className="text-neutral-500 text-[15px] mt-2">
+      <h3 className="text-neutral-500 text-[15px] mt-2 hidden">
         Due Date: {getFormattedDate(dueDate)}
       </h3>
     </div>
