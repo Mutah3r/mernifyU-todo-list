@@ -124,7 +124,7 @@ const Tasks = () => {
   }, []);
 
   return (
-    <div>
+    <div className="mb-16">
       {/* Search box */}
       <div>
         {/* TODO: Implement search option */}
