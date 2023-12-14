@@ -1,7 +1,7 @@
 import { Dialog, Transition } from "@headlessui/react";
 import PrimaryButton from "../components/PrimaryButton";
-import SearchBox from "../components/SearchBox";
-import { IoOptionsOutline } from "react-icons/io5";
+// import SearchBox from "../components/SearchBox";
+// import { IoOptionsOutline } from "react-icons/io5";
 import { FaPlus } from "react-icons/fa6";
 import TaskList from "../components/TaskList";
 import { MdOutlineCheckBoxOutlineBlank } from "react-icons/md";
@@ -127,7 +127,8 @@ const Tasks = () => {
     <div>
       {/* Search box */}
       <div>
-        <SearchBox />
+        {/* TODO: Implement search option */}
+        {/* <SearchBox /> */}
       </div>
 
       {/* Task page actions */}
@@ -136,7 +137,8 @@ const Tasks = () => {
           Tasks
         </h2>
         <div className="flex gap-3 items-center">
-          <IoOptionsOutline className="text-neutral-700 text-[20px] cursor-pointer" />
+          {/* TODO: Implement filtering option */}
+          {/* <IoOptionsOutline className="text-neutral-700 text-[20px] cursor-pointer" /> */}
           <PrimaryButton
             title="New task"
             icon={<FaPlus />}
