@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Main from "../layouts/Main";
 import Dashboard from "../pages/Dashboard";
 import Tasks from "../pages/Tasks";
+import ErrorPage from "../pages/ErrorPage";
 
 const router = createBrowserRouter([
   {
@@ -17,6 +18,7 @@ const router = createBrowserRouter([
         element: <Tasks />,
       },
     ],
+    errorElement: <ErrorPage />,
   },
 ]);
 
