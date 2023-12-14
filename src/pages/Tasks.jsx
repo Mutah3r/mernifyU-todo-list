@@ -40,6 +40,11 @@ const Tasks = () => {
     setAllTasks(updatedTasks);
   };
 
+  const updateTask = (id, updatedTask) => {
+    const updatedTasks = allTasks.filter((task) => task._id !== id);
+    setAllTasks([...updatedTasks, updatedTask]);
+  };
+
   const addTaskToDB = () => {
     if (!newTaskTitle || !newTaskDescription || !newTaskDueDate) {
       toast.warn("Please fill-up all the fields!", {
@@ -155,6 +160,9 @@ const Tasks = () => {
           ) : (
             getTasksByStatus("Pending").map((t) => (
               <TaskCard
+                updateTask={updateTask}
+                status={t.status}
+                completed={t.completed}
                 discardTask={discardTask}
                 taskID={t._id}
                 key={t._id}
@@ -175,6 +183,9 @@ const Tasks = () => {
           ) : (
             getTasksByStatus("In Progress").map((t) => (
               <TaskCard
+                updateTask={updateTask}
+                status={t.status}
+                completed={t.completed}
                 discardTask={discardTask}
                 taskID={t._id}
                 key={t._id}
@@ -195,6 +206,9 @@ const Tasks = () => {
           ) : (
             getTasksByStatus("Completed").map((t) => (
               <TaskCard
+                updateTask={updateTask}
+                status={t.status}
+                completed={t.completed}
                 discardTask={discardTask}
                 taskID={t._id}
                 key={t._id}
